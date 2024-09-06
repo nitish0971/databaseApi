@@ -28,6 +28,16 @@ app.use(cors(corsOptions));
 sql.connect(config, (err) => {
   if (err) console.error('SQL connection error:', err);
 });
+
+app.get('/api/joins', async (req, res) => {
+  try {
+    const result = await sql.query('SELECT p.Name,p.Color,p.Size,p.Weight FROM [SalesLT].[Product] p INNER JOIN [SalesLT].[ProductCategory] pc ON p.ProductCategoryID = pc.ProductCategoryID;');
+    res.json(result.recordset);
+  } catch (err) {
+    console.error('SQL query error:', err);
+    res.status(500).send('Internal Server Error');
+  }
+});
  
 app.get('/api/top-rows', async (req, res) => {
   try {
