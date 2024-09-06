@@ -16,9 +16,11 @@ const config = {
 };
  
 const corsOptions = {
-  origin: 'https://souravempn1177-dzhnckffbtejfgbn.southindia-01.azurewebsites.net/',
-  methods: 'GET,POST',
-  allowedHeaders: 'Content-Type'
+  origin: '*',
+  methods: 'GET, POST, PUT, DELETE, PATCH, OPTIONS',
+  allowedHeaders: '*', 
+  exposedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With'],
+  credentials: true, 
 };
  
 app.use(cors(corsOptions));
